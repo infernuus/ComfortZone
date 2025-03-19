@@ -1,0 +1,115 @@
+/*положение слайдера*/
+#slider {
+   margin: 0 auto;
+   width: 100%;
+   max-width: 350px;
+}
+/*скрывает все, что находится за пределами этого блока*/
+#slides {
+   position: relative;
+   width: 100%;
+   overflow: hidden;
+}
+/*общий размер блока с изображениями*/
+#slides .inner {
+   width: 400%;
+   height: 250px;
+}
+/*все изображения справа друг от друга*/
+#slides img {
+   width: 25%;
+   float:left;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+}
+/*позиция изображения при активации переключателя*/
+#slide1:checked ~ #slides .inner {
+   margin-left: 0;
+}
+#slide2:checked ~ #slides .inner {
+   margin-left: -100%;
+}
+#slide3:checked ~ #slides .inner {
+   margin-left: -200%;
+}
+#slide4:checked ~ #slides .inner {
+   margin-left: -300%;
+}
+/*анимация пролистывания изображений*/
+#slides .inner{ 
+	transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+}
+/*скрывает стандартные инпуты (чекбоксы) на странице*/
+#slider input{ 
+	display: none;
+}
+/*положение блока всех управляющих элементов*/
+#controls{ 
+	margin: -45% 0 0 0;
+	width: 100%;
+	height: 50px;
+}
+/*настройка переключения и положения для левой стрелки*/
+/*если слайд1-4 активны, то идет обращение к лейблу*/
+#slide1:checked ~ #controls label:nth-child(4), 
+#slide2:checked ~ #controls label:nth-child(1),
+#slide3:checked ~ #controls label:nth-child(2),
+#slide4:checked ~ #controls label:nth-child(3){
+	background: url('../image/ecskuisme.png') no-repeat;
+	float: left;
+	margin: 0 0 0 -84px; /*сдвиг влево*/
+	display: block;
+	height: 68px;
+	width: 68px;
+}
+/*настройка переключения и положения для правой стрелки*/
+#slide1:checked ~ #controls label:nth-child(2), 
+#slide2:checked ~ #controls label:nth-child(3),
+#slide3:checked ~ #controls label:nth-child(4),
+#slide4:checked ~ #controls label:nth-child(1){
+	background: url('../image/ecskuisme.png') no-repeat; /*заливка фона картинкой без повторений*/
+	float: right;
+	margin: 0 -84px 0 0; /*сдвиг вправо*/
+	display: block;
+	height: 68px;
+	width: 68px;
+}
+/*прозрачность стрелок при наведении*/
+#controls label:hover{ 
+	opacity: 0.6;
+}
+/*прозрачность стрелок при отводе курсора*/
+#controls label{ 
+	transition: opacity 0.2s ease-out;
+}
+/*положение блока управляющих элементов*/
+#active{ 
+	margin: 40% 0 0 0;
+	width: 100%;
+	height: 15px;
+	text-align: center;
+}
+/*стиль отдельного переключателя*/
+#active label{ 
+	border-radius: 50%; 
+	display: inline-block; 
+	width: 15px;
+	height: 15px;
+	background: #bbb;
+}
+/*поведение чекбокса при наведении*/
+#active label:hover{ 
+	background: #76c8ff;
+}
+/*цвет активного лейбла при активации чекбокса*/
+#slide1:checked ~ #active label:nth-child(1),
+#slide2:checked ~ #active label:nth-child(2),
+#slide3:checked ~ #active label:nth-child(3),
+#slide4:checked ~ #active label:nth-child(4){
+	background: #18a3dd;
+}
+label{ 
+	cursor: pointer;
+}
